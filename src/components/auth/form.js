@@ -1,29 +1,14 @@
-import { useRouter } from 'next/router'
 import Link from "next/link";
 import { useState } from "react";
 
-export default function Form({ signin }) {
-
-  const router = useRouter();
+export default function Form({ signin, onFormSubmit }) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    let res = await fetch('/api/user', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password  
-      })
-    }
-    )
-
-    router.push('/profile');
+    onFormSubmit(email, password)
   };
 
 

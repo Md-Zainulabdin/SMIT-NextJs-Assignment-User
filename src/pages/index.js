@@ -1,4 +1,4 @@
-import { read } from "../../utils/handlers";
+import { read } from "../utils/handlers";
 
 const Home = ({data}) => {
   console.log(data);

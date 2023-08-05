@@ -1,11 +1,20 @@
-import { write } from "../../../../utils/handlers";
+import { write } from "../../../utils/handlers";
 
-export default  function handler(req, res) {
-    // res.status(200).json({ name: 'User' })
-
-    if (req.method === 'POST') {
-      write(req.body)
-      res.status(201)
-    }
+export default function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(404).send();
   }
+
+  try {
+    write(req.body);
+    return res.status(201).send()
+  }
+  catch (error) {
+    return res.status(400).json({
+      success: false,
+      message: error.message
+    })
+  }
+
   
+}
