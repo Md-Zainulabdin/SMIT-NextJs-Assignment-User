@@ -1,4 +1,5 @@
 import Form from "@/components/auth/form";
+import { useRouter } from "next/navigation";
 
 export default function SignUp() {
 
@@ -19,6 +20,7 @@ export default function SignUp() {
 
             if (res.ok) {
                 alert("Sign up Succesfull");
+                router.replace('/auth/login')
             }
         }
         catch (error) {
